@@ -2,7 +2,7 @@ require "leech/version"
 require "leech/actor"
 require "leech/student"
 require "leech/teacher"
-require "leech/victim"
+require "leech/surrogate"
 
 
 module Leech

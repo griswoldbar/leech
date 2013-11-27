@@ -10,7 +10,10 @@ class Twerp < Leech::Actor
 
 end
 
-teacher = Leech::Teacher.new("Mr Jones")
-student = Leech::Student.new("Bob")
-twerp = Twerp.new("Elvis")
-teacher.teach(student, twerp, :say_name)
+jones = Leech::Teacher.new("Mr Jones")
+bob = Leech::Actor.new("Bob")
+elvis = Twerp.new("Elvis")
+john = Leech::Actor.new("John")
+jones.teach(bob, elvis, :say_name)
+jones.teach(john, bob, :say_name)
+

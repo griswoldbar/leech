@@ -1,13 +1,33 @@
 module Leech
   class Surrogate
     attr_reader :host, :victim
+    
     def initialize(host, victim)
       @host = host
       @victim = victim.clone
     end
     
-    def copy_method
-      
+    def copy_methods
+      _host = host
+      common_methods.each do |method|
+        victim.define_singleton_method(method) do |*args|
+          _host.send(method, *args)
+        end
+      end
+    end
+    
+    def method_missing(method, *args)
+      if victim.respond_to?(method)
+        victim.send(method, *args)
+      else
+        super(method, *args)
+      end
+    end
+    
+    private
+    def common_methods
+      (host.methods & victim.methods) - Object.instance_methods
+      # (host.methods(false) & victim.methods(false) & host.private_methods(false) & victim.private_methods(false))
     end
   end
 end
