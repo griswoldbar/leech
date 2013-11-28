@@ -11,14 +11,14 @@ module Leech
       _host = host
       common_methods.each do |method|
         victim.define_singleton_method(method) do |*args|
-          _host.send(method, *args)
+          _host.__send__(method, *args)
         end
       end
     end
 
     def method_missing(method, *args)
       if victim.respond_to?(method)
-        victim.send(method, *args)
+        victim.__send__(method, *args)
       else
         super(method, *args)
       end
