@@ -19,3 +19,13 @@ jones.teach(john, bob, :say_name)
 def bob.size
   "my name has #{name.size} letters"
 end
+
+mike = Leech::Actor.new("Mike")
+
+def mike.letter
+  "my name starts with #{name[0]}"
+end
+
+jones.train(Twerp, mike, :letter)
+jones.train(Twerp, bob, :size)
+

@@ -1,4 +1,3 @@
-require 'leech/actor'
 require 'leech/student'
 
 module Leech
