@@ -1,3 +1,4 @@
+require 'leech/sandbox/actor'
 class Twerp < Leech::Actor
   def say_name
     "my name is #{name}"

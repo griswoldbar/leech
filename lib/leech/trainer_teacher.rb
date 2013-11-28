@@ -9,7 +9,7 @@ module Leech
 
     private
     def trainer_registered?(trainer)
-      trainer.respond_to?(:trainer?)
+      trainer.is_a?(Leech::Trainer)
     end
 
     def register_trainer(trainer)

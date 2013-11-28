@@ -3,7 +3,7 @@ require 'leech/student'
 module Leech
   module Teacher
     def teach(student, victim, method)
-      register(student) unless registered?(student)
+      register_student(student) unless student?(student)
       add_method(student, victim, method)
       student
     end
@@ -12,10 +12,12 @@ module Leech
     def add_method(student, victim, method)
       if victim.respond_to?(method)
         surrogate = (student.surrogate_register[victim.object_id] ||= Surrogate.new(student, victim))
-      elsif registered?(victim)
+      elsif student?(victim)
         surrogate = (student.surrogate_register[victim.object_id] ||= victim.get_surrogate(method).clone)
         surrogate.host = student
         surrogate.victim = surrogate.victim.clone
+      else
+        surrogate = nil
       end
 
       if surrogate
@@ -26,12 +28,12 @@ module Leech
       end
     end
 
-    def register(object)
+    def register_student(object)
       object.extend(Leech::Student)
     end
 
-    def registered?(object)
-      object.respond_to?(:student?)
+    def student?(object)
+      object.is_a?(Leech::Student)
     end
   end
 end

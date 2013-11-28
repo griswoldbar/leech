@@ -18,9 +18,5 @@ module Leech
         end
       end
     end
-
-    def trainer?
-      true
-    end
   end
 end
