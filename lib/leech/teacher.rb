@@ -2,7 +2,7 @@ require 'leech/actor'
 require 'leech/student'
 
 module Leech
-  class Teacher < Actor
+  module Teacher
     def teach(student, victim, method)
       register(student) unless registered?(student)
       add_method(student, victim, method)

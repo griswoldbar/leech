@@ -1,9 +1,5 @@
-require "leech/version"
-require "leech/actor"
-require "leech/student"
 require "leech/teacher"
-require "leech/surrogate"
-
+require "leech/trainer_teacher"
 
 module Leech
   # Your code goes here...
